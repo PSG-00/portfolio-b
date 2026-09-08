@@ -106,7 +106,7 @@ export default function ProfileCard({ profile }) {
           >
             {copied ? <Check size={18} className="text-emerald-500" /> : <Mail size={18} />}
             {copied && (
-              <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-0.5 rounded shadow whitespace-nowrap z-10">
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs px-2 py-0.5 rounded shadow whitespace-nowrap z-10">
                 복사됨!
               </span>
             )}

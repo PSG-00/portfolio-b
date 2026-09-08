@@ -27,7 +27,7 @@ export default function ProjectDetailPage({ projects, profile, darkMode, setDark
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-100/60 to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans">
       {/* 상단 네비게이션 헤더 */}
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 h-16 flex items-center justify-between">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors group"
@@ -54,7 +54,7 @@ export default function ProjectDetailPage({ projects, profile, darkMode, setDark
       </header>
 
       {/* 프로젝트 히어로 요약 영역 */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pt-8 pb-4">
         <div className="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 shadow-sm">
           {/* 상단 넘버링 & 타이틀 */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-slate-200/70 dark:border-slate-800">
@@ -138,7 +138,7 @@ export default function ProjectDetailPage({ projects, profile, darkMode, setDark
       </div>
 
       {/* 본문 섹션들 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pb-20">
         {/* 1. 나의 역할 및 인프라 아키텍처 섹션 */}
         <RoleOverviewSection
           myRole={project.myRole}

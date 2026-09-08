@@ -59,10 +59,10 @@ export default function RoleOverviewSection({ myRole, techStack }) {
               <div className="flex items-start gap-3">
                 <CheckCircle2 size={18} className="text-sky-500 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <h5 className="text-sm font-bold text-slate-900 dark:text-white">
+                  <h5 className="text-base font-bold text-slate-900 dark:text-white">
                     {item.title}
                   </h5>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>

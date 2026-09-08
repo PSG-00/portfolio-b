@@ -6,7 +6,7 @@ export default function Footer({ profile }) {
 
   return (
     <footer className="border-t border-slate-200/80 dark:border-slate-800 py-10 bg-slate-100/50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-1.5">
           <span>© {currentYear} {profile.name}. All rights reserved.</span>
         </div>

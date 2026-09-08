@@ -32,7 +32,7 @@ export default function AboutCard({ about }) {
                 <span className="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
                 {item.label}
               </div>
-              <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-tight">
+              <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-tight">
                 {item.desc}
               </div>
             </div>

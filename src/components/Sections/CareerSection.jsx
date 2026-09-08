@@ -37,7 +37,7 @@ export default function CareerSection({ careers }) {
                       <h4 className="text-lg font-bold text-slate-900 dark:text-white">
                         {career.company}
                       </h4>
-                      <span className="px-2 py-0.5 text-[11px] font-semibold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                      <span className="px-2 py-0.5 text-xs font-semibold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
                         {career.type}
                       </span>
                     </div>
@@ -75,7 +75,7 @@ export default function CareerSection({ careers }) {
                     {career.skills.map((skill, i) => (
                       <span
                         key={i}
-                        className="px-2 py-0.5 text-[11px] font-medium rounded bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
+                        className="px-2 py-0.5 text-xs font-medium rounded bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
                       >
                         {skill}
                       </span>

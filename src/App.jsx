@@ -90,7 +90,7 @@ function HomeView({ darkMode, setDarkMode }) {
       />
 
       {/* 본문 상세 섹션들 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pb-20">
         {/* 섹션 구분 안내 바 */}
         <div className="flex items-center justify-center my-6">
           <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1" />

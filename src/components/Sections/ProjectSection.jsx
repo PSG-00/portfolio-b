@@ -53,7 +53,7 @@ export default function ProjectSection({ project }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-4">
                   <p className="text-xs text-white/90 font-medium line-clamp-1">{project.subtitle}</p>
-                  <span className="text-[11px] font-mono text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded-md border border-sky-800/80 flex items-center gap-1 flex-shrink-0 ml-2">
+                  <span className="text-xs font-mono text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded-md border border-sky-800/80 flex items-center gap-1 flex-shrink-0 ml-2">
                     상세보기 <ArrowRight size={11} />
                   </span>
                 </div>

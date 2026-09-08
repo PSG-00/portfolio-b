@@ -36,7 +36,7 @@ export default function ProblemHypothesisView({ actNumber, category, problemHypo
               key={idx}
               className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border-l-4 border-l-sky-500 border border-slate-200/60 dark:border-slate-700/60 shadow-xs hover:shadow-md transition-all print:bg-white print:border-slate-200"
             >
-              <span className="text-[11px] font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+              <span className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 {item.id}
               </span>
               <h4 className="text-base font-bold text-slate-900 dark:text-white mt-1.5 mb-2">
@@ -73,7 +73,7 @@ export default function ProblemHypothesisView({ actNumber, category, problemHypo
               key={idx}
               className="p-5 rounded-2xl bg-sky-50/50 dark:bg-sky-950/20 border-l-4 border-l-sky-500 border border-sky-200/60 dark:border-sky-800/50 shadow-xs hover:shadow-md transition-all print:bg-white print:border-slate-200"
             >
-              <span className="text-[11px] font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
+              <span className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
                 {item.id}
               </span>
               <h4 className="text-base font-bold text-slate-900 dark:text-white mt-1.5 mb-2">

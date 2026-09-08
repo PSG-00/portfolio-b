@@ -38,7 +38,7 @@ export default function ResultImpactView({ actNumber, category, result }) {
                 <TrendingUp size={15} />
                 <span>{result.benchmarkTitle || "REAL-BENCHMARK & SYSTEM EVIDENCE (실측 결과 증빙)"}</span>
               </div>
-              <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500 hidden sm:inline-block">
+              <span className="text-xs font-mono text-slate-400 dark:text-slate-500 hidden sm:inline-block">
                 클릭하여 확대보기
               </span>
             </div>
@@ -52,7 +52,7 @@ export default function ResultImpactView({ actNumber, category, result }) {
                   <div className="px-3 py-2 flex items-center justify-between text-xs font-mono text-slate-300 border-b border-slate-800/80">
                     <span className="font-bold text-sky-400">{img.title}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[11px] text-slate-400 hidden sm:inline">{img.desc}</span>
+                      <span className="text-xs text-slate-400 hidden sm:inline">{img.desc}</span>
                       <ZoomIn size={13} className="text-slate-400 group-hover:text-sky-400 transition-colors" />
                     </div>
                   </div>
@@ -79,7 +79,7 @@ export default function ResultImpactView({ actNumber, category, result }) {
                 alt={result.title}
                 className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.01]"
               />
-              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-slate-950/75 backdrop-blur-xs text-[11px] font-mono text-slate-300 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-slate-950/75 backdrop-blur-xs text-xs font-mono text-slate-300 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
                 <ZoomIn size={13} />
                 <span>확대하기</span>
               </div>
@@ -95,7 +95,7 @@ export default function ResultImpactView({ actNumber, category, result }) {
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative max-w-5xl w-full max-h-[92vh] bg-slate-900 border border-slate-700/80 rounded-2xl overflow-hidden p-3 sm:p-4 shadow-2xl flex flex-col"
+            className="relative max-w-[1400px] w-full max-h-[92vh] bg-slate-900 border border-slate-700/80 rounded-2xl overflow-hidden p-3 sm:p-4 shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* 모달 상단 */}
@@ -154,7 +154,7 @@ export default function ResultImpactView({ actNumber, category, result }) {
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
                   {metric.label}
                 </span>
-                <p className="text-[11px] text-slate-400 dark:text-slate-500 leading-tight">
+                <p className="text-xs text-slate-400 dark:text-slate-500 leading-tight">
                   {metric.desc}
                 </p>
               </div>

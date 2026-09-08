@@ -59,14 +59,14 @@ export default function SolutionPipelineView({ actNumber, category, solution }) 
                 <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                   {step.title}
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                   {step.desc}
                 </p>
               </div>
 
               {step.tech && (
                 <div className="pt-3 border-t border-slate-200/60 dark:border-slate-700/60">
-                  <span className="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 border border-slate-200 dark:border-slate-700">
+                  <span className="inline-block text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 border border-slate-200 dark:border-slate-700">
                     {step.tech}
                   </span>
                 </div>
@@ -93,10 +93,10 @@ export default function SolutionPipelineView({ actNumber, category, solution }) 
                 <div className="flex items-start gap-2.5">
                   <Sparkles size={16} className="text-sky-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h5 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
+                    <h5 className="text-base font-bold text-slate-900 dark:text-white mb-1">
                       {hl.name}
                     </h5>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {hl.desc}
                     </p>
                   </div>

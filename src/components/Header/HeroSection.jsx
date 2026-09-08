@@ -10,7 +10,7 @@ export default function HeroSection({ profile, about, quickNavItems, activeSecti
       <div className="absolute top-0 left-1/4 -translate-x-1/2 w-96 h-96 bg-sky-400/10 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-violet-400/10 dark:bg-violet-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* 상단 3분할 그리드 */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
           {/* 왼쪽: 프로필 (사진, 이름, 링크) */}

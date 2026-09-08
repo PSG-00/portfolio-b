@@ -73,7 +73,7 @@ export default function QuickNavCard({ items, onNavigate }) {
                       {item.label}
                     </span>
                   </div>
-                  <p className="text-[11px] truncate mt-0.5 text-slate-500 dark:text-slate-400">
+                  <p className="text-xs truncate mt-0.5 text-slate-500 dark:text-slate-400">
                     {item.desc}
                   </p>
                 </div>
