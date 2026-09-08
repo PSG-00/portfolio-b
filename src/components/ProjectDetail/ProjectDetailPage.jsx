@@ -5,6 +5,7 @@ import {
   Calendar,
   UserCheck,
   ExternalLink,
+  Users,
   Sun,
   Moon,
 } from 'lucide-react';
@@ -72,8 +73,14 @@ export default function ProjectDetailPage({ projects, profile, darkMode, setDark
               </div>
             </div>
 
-            {/* 메타 정보 (기간 & 기여도) */}
+            {/* 메타 정보 (협업 인원, 기간 & 기여도) */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+              {project.teamSize && (
+                <div className="flex items-center gap-1.5 bg-sky-50 dark:bg-sky-950/70 border border-sky-200 dark:border-sky-800 text-sky-700 dark:text-sky-300 px-3.5 py-2 rounded-xl font-bold">
+                  <Users size={14} className="text-sky-500" />
+                  <span>{project.teamSize}</span>
+                </div>
+              )}
               <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3.5 py-2 rounded-xl">
                 <Calendar size={14} className="text-sky-500" />
                 <span>{project.period}</span>

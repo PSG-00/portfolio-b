@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, CheckCircle2, Calendar, UserCheck, ArrowRight } from 'lucide-react';
+import { ExternalLink, CheckCircle2, Calendar, UserCheck, ArrowRight, Users } from 'lucide-react';
 import { GithubIcon } from '../Common/Icons';
 
 export default function ProjectSection({ project }) {
@@ -11,7 +11,7 @@ export default function ProjectSection({ project }) {
     >
       <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 shadow-sm hover:shadow-md transition-shadow">
         {/* 상단 라벨 & 헤더 */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-slate-200/70 dark:border-slate-800">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200/70 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <span className="text-3xl sm:text-4xl font-black font-mono text-sky-500/80 dark:text-sky-400/80">
               {project.number}
@@ -26,8 +26,14 @@ export default function ProjectSection({ project }) {
             </div>
           </div>
 
-          {/* 메타 정보 (기간 및 역할) */}
-          <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+          {/* 우측 메타 정보 (협업 인원 네모 블럭 뱃지, 기간 및 역할) */}
+          <div className="flex flex-wrap items-center gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            {project.teamSize && (
+              <div className="flex items-center gap-1.5 bg-sky-50 dark:bg-sky-950/70 border border-sky-200 dark:border-sky-800/80 text-sky-700 dark:text-sky-300 px-3 py-1.5 rounded-xl font-bold shadow-sm">
+                <Users size={14} className="text-sky-500" />
+                <span>{project.teamSize}</span>
+              </div>
+            )}
             <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl">
               <Calendar size={14} className="text-sky-500" />
               <span>{project.period}</span>
@@ -95,43 +101,81 @@ export default function ProjectSection({ project }) {
           </div>
 
           {/* 텍스트 설명 영역 */}
-          <div className="lg:col-span-6 flex flex-col justify-between h-full">
-            <div>
-              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                {project.description}
-              </p>
+          <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-5">
+            <div className="space-y-5">
+              {/* 서비스 개요 (한눈에 이해하기 쉬운 프로젝트 정체성) */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800">
+                <div className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
+                  Service Overview
+                </div>
+                <p className="text-sm sm:text-base text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
 
-              {/* 핵심 구현 기능 */}
-              <div className="mt-6">
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
-                  주요 구현 및 성과
+              {/* 핵심 서비스 기능 및 구현 내용 */}
+              <div>
+                <h4 className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                  Key Features & Highlights
                 </h4>
                 <ul className="space-y-2.5">
-                  {project.keyFeatures.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-300">
-                      <CheckCircle2 size={17} className="text-sky-500 flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
+                  {project.keyFeatures.map((feat, idx) => {
+                    const colonIdx = feat.indexOf(':');
+                    const hasColon = colonIdx !== -1;
+                    const title = hasColon ? feat.substring(0, colonIdx) : '';
+                    const desc = hasColon ? feat.substring(colonIdx + 1).trim() : feat;
+
+                    return (
+                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                        <CheckCircle2 size={17} className="text-sky-500 flex-shrink-0 mt-0.5" />
+                        <div className="leading-relaxed">
+                          {hasColon && (
+                            <strong className="font-bold text-slate-900 dark:text-white mr-1.5">
+                              {title}:
+                            </strong>
+                          )}
+                          <span>{desc}</span>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
 
-            {/* 사용 기술 스택 */}
-            <div className="mt-6 pt-5 border-t border-slate-200/70 dark:border-slate-800">
-              <div className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">
-                Tech Stack
+            {/* 하단: Tech Stack & 심층 기술 분석 안내 */}
+            <div className="pt-4 border-t border-slate-200/70 dark:border-slate-800 space-y-3.5">
+              <div>
+                <div className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
+                  Tech Stack
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.techStack.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 text-xs font-semibold rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
-                  >
-                    {tech}
+
+              {/* 상세 기술 분석 페이지 유도 배너 */}
+              <Link
+                to={`/project/${project.id}`}
+                className="flex items-center justify-between p-3.5 rounded-xl bg-sky-50/80 dark:bg-sky-950/40 border border-sky-200/80 dark:border-sky-800/70 hover:bg-sky-100 dark:hover:bg-sky-900/50 transition-all group"
+              >
+                <div className="flex items-center gap-2 text-xs text-sky-900 dark:text-sky-200">
+                  <span className="text-sm">💡</span>
+                  <span className="font-medium">
+                    장애 격리, 부하 테스트 병목 진단 및 성능 최적화 과정은 <span className="font-bold underline underline-offset-2 text-sky-600 dark:text-sky-400">상세 분석</span>에서 확인하실 수 있습니다.
                   </span>
-                ))}
-              </div>
+                </div>
+                <ArrowRight size={15} className="text-sky-600 dark:text-sky-400 transition-transform group-hover:translate-x-1 flex-shrink-0 ml-2" />
+              </Link>
             </div>
           </div>
         </div>
