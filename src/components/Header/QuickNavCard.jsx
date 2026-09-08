@@ -33,7 +33,7 @@ export default function QuickNavCard({ items, onNavigate }) {
   };
 
   return (
-    <div className="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70">
+    <div className="w-full glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70">
       {/* 상단 라벨 및 제목 */}
       <div>
         <div className="flex items-center justify-between mb-2.5">

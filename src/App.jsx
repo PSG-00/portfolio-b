@@ -80,19 +80,19 @@ function HomeView({ darkMode, setDarkMode }) {
         setDarkMode={setDarkMode}
       />
 
-      {/* 상단 Hero 3분할 영역: 왼쪽(프로필) | 가운데(자기소개) | 오른쪽(바로가기 메뉴) */}
-      <HeroSection
-        profile={portfolioData.profile}
-        about={portfolioData.about}
-        quickNavItems={portfolioData.quickNavItems}
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-      />
+      {/* 본문 메인 컨테이너 (Hero 3단 카드와 하위 프로젝트들이 완벽히 동일한 좌우 너비 및 여백 공유) */}
+      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pb-20 pt-6 space-y-10">
+        {/* 상단 Hero 3분할 영역: 왼쪽(프로필) | 가운데(자기소개) | 오른쪽(바로가기 메뉴) */}
+        <HeroSection
+          profile={portfolioData.profile}
+          about={portfolioData.about}
+          quickNavItems={portfolioData.quickNavItems}
+          activeSection={activeSection}
+          onNavigate={scrollToSection}
+        />
 
-      {/* 본문 상세 섹션들 */}
-      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pb-20">
         {/* 섹션 구분 안내 바 */}
-        <div className="flex items-center justify-center my-6">
+        <div className="flex items-center justify-center my-8">
           <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1" />
           <span className="px-4 text-xs font-mono font-medium text-slate-400 dark:text-slate-500 uppercase tracking-widest">
             Detailed Portfolios & Background
@@ -150,7 +150,7 @@ export default function App() {
   const location = useLocation();
   useEffect(() => {
     // 1. 현재 라우트에 따른 동적 페이지 제목 설정
-    let pageTitle = "박성국's 포트폴리오 | Backend & DevOps";
+    let pageTitle = "박성국's 포트폴리오 | Backend Developer";
     if (location.pathname.includes('project-1')) {
       pageTitle = "모두의 플리 (MOPL) 상세 | 박성국's 포트폴리오";
     } else if (location.pathname.includes('project-2')) {

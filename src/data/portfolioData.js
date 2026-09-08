@@ -1,7 +1,7 @@
 export const portfolioData = {
   profile: {
     name: "박성국",
-    role: "Backend Developer & DevOps Engineer",
+    role: "Backend Developer",
     avatar: "./profile.jpg",
     statusBadge: "새로운 도전을 준비중",
     email: "cdjsdj1902@gmail.com",
