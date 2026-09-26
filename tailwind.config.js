@@ -43,14 +43,14 @@ export default {
       },
       fontSize: {
         '2xs': ['0.875rem', { lineHeight: '1.25rem' }],    // 14px
-        xs: ['0.8125rem', { lineHeight: '1.3rem' }],
-        sm: ['0.9375rem', { lineHeight: '1.6rem' }],
-        base: ['1rem', { lineHeight: '1.75rem' }],
-        lg: ['1.375rem', { lineHeight: '2.1rem' }],        // 22px (기존 18px -> 22px)
-        xl: ['1.625rem', { lineHeight: '2.35rem' }],       // 26px (기존 20px -> 26px)
-        '2xl': ['2rem', { lineHeight: '2.75rem' }],        // 32px (기존 24px -> 32px)
-        '3xl': ['2.375rem', { lineHeight: '3.15rem' }],    // 38px (기존 30px -> 38px)
-        '4xl': ['2.875rem', { lineHeight: '3.65rem' }],    // 46px (기존 36px -> 46px)
+        xs: ['0.9375rem', { lineHeight: '1.45rem' }],
+        sm: ['1.0625rem', { lineHeight: '1.75rem' }],
+        base: ['1.125rem', { lineHeight: '1.85rem' }],
+        lg: ['1.5rem', { lineHeight: '2.25rem' }],
+        xl: ['1.75rem', { lineHeight: '2.5rem' }],
+        '2xl': ['2.125rem', { lineHeight: '2.85rem' }],
+        '3xl': ['2.5rem', { lineHeight: '3.25rem' }],
+        '4xl': ['3rem', { lineHeight: '3.75rem' }],
       },
     },
   },

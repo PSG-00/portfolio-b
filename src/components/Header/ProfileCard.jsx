@@ -19,12 +19,14 @@ export default function ProfileCard({ profile }) {
         {/* 프로필 이미지 & 기본 정보 */}
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
           <div className="relative group mb-4">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-sm overflow-hidden   transition-transform duration-300 ">
-              <img
-                src={profile.avatar}
-                alt={profile.name}
-                className="w-full h-full object-cover object-center"
-              />
+            <div className="w-24 h-24 sm:w-28 sm:h-28 p-1 rounded-sm bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 shadow-xs transition-all duration-300 group-hover:border-slate-400 dark:group-hover:border-slate-600">
+              <div className="w-full h-full rounded-[2px] overflow-hidden bg-slate-100 dark:bg-slate-950">
+                <img
+                  src={profile.avatar}
+                  alt={profile.name}
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
             </div>
           </div>
 
