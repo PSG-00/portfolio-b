@@ -69,7 +69,7 @@ function HomeView({ darkMode, setDarkMode }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-slate-100/60 to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300 font-sans">
+    <div className="site-shell min-h-screen        transition-colors duration-300 font-sans">
       {/* 상단 네비게이션 바 */}
       <Navbar
         name={portfolioData.profile.name}

@@ -4,11 +4,11 @@ import { GraduationCap, Calendar, Award } from 'lucide-react';
 export default function EducationSection({ education }) {
   return (
     <section id="education" className="scroll-mt-24 pt-4 pb-16">
-      <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 shadow-sm">
+      <div className="glass-card rounded-sm p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 ">
         {/* 섹션 타이틀 */}
         <div className="flex items-center justify-between pb-6 mb-8 border-b border-slate-200/70 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
               <GraduationCap size={20} />
             </div>
             <div>
@@ -28,7 +28,7 @@ export default function EducationSection({ education }) {
           {education.map((item, index) => (
             <div
               key={index}
-              className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
+              className="p-5 sm:p-6 rounded-sm bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
             >
               <div className="space-y-1 max-w-3xl">
                 <div className="flex items-center gap-2 flex-wrap">

@@ -4,11 +4,11 @@ import { Briefcase, Calendar, CheckCircle2 } from 'lucide-react';
 export default function CareerSection({ careers }) {
   return (
     <section id="career" className="scroll-mt-24 pt-4 pb-12">
-      <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 shadow-sm">
+      <div className="glass-card rounded-sm p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 ">
         {/* 섹션 타이틀 */}
         <div className="flex items-center justify-between pb-6 mb-8 border-b border-slate-200/70 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center">
               <Briefcase size={20} />
             </div>
             <div>
@@ -30,7 +30,7 @@ export default function CareerSection({ careers }) {
               {/* 타임라인 포인트 */}
               <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-4 border-sky-500 transition-transform group-hover:scale-125" />
 
-              <div className="bg-slate-50/80 dark:bg-slate-800/40 rounded-2xl p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 transition-all hover:border-sky-300 dark:hover:border-sky-700">
+              <div className="bg-slate-50/80 dark:bg-slate-800/40 rounded-sm p-5 sm:p-6 border border-slate-200/60 dark:border-slate-800/60 transition-all hover:border-sky-300 dark:hover:border-sky-700">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                   <div>
                     <div className="flex items-center gap-2">

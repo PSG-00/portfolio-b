@@ -4,11 +4,11 @@ import { Award, Calendar } from 'lucide-react';
 export default function CertSection({ certifications }) {
   return (
     <section id="certifications" className="scroll-mt-24 pt-4 pb-12">
-      <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 shadow-sm">
+      <div className="glass-card rounded-sm p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 ">
         {/* 섹션 타이틀 */}
         <div className="flex items-center justify-between pb-6 mb-8 border-b border-slate-200/70 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-sm bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
               <Award size={20} />
             </div>
             <div>
@@ -28,11 +28,11 @@ export default function CertSection({ certifications }) {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/60 hover:border-amber-400/60 dark:hover:border-amber-500/60 transition-all hover:-translate-y-1 hover:shadow-md flex flex-col justify-between"
+              className="p-5 rounded-sm bg-slate-50/80 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/60 hover:border-amber-400/60 dark:hover:border-amber-500/60 transition-all hover:-translate-y-1  flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-sm bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
                     <Award size={16} />
                   </div>
                   <span className="px-2 py-0.5 text-xs font-bold rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">

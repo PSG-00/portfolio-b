@@ -7,13 +7,13 @@ export default function ProjectSection({ project }) {
   return (
     <section
       id={project.id}
-      className="scroll-mt-24 pt-4 pb-12 transition-all duration-300"
+      className="project-summary scroll-mt-24 pt-4 pb-12 transition-all duration-300"
     >
-      <div className="glass-card rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 shadow-sm hover:shadow-md transition-shadow">
+      <div className="glass-card rounded-sm p-6 sm:p-8 md:p-10 border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70   transition-shadow">
         {/* 상단 라벨 & 헤더 */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-200/70 dark:border-slate-800">
           <div className="flex items-center gap-3">
-            <span className="text-3xl sm:text-4xl font-black font-mono text-sky-500/80 dark:text-sky-400/80">
+            <span className="text-3xl sm:text-4xl font-bold font-mono text-sky-500/80 dark:text-sky-400/80">
               {project.number}
             </span>
             <div>
@@ -29,16 +29,16 @@ export default function ProjectSection({ project }) {
           {/* 우측 메타 정보 (협업 인원 네모 블럭 뱃지, 기간 및 역할) */}
           <div className="flex flex-wrap items-center gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
             {project.teamSize && (
-              <div className="flex items-center gap-1.5 bg-sky-50 dark:bg-sky-950/70 border border-sky-200 dark:border-sky-800/80 text-sky-700 dark:text-sky-300 px-3 py-1.5 rounded-xl font-bold shadow-sm">
+              <div className="flex items-center gap-1.5 bg-sky-50 dark:bg-sky-950/70 border border-sky-200 dark:border-sky-800/80 text-sky-700 dark:text-sky-300 px-3 py-1.5 rounded-sm font-bold ">
                 <Users size={14} className="text-sky-500" />
                 <span>{project.teamSize}</span>
               </div>
             )}
-            <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl">
+            <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-sm">
               <Calendar size={14} className="text-sky-500" />
               <span>{project.period}</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl">
+            <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-sm">
               <UserCheck size={14} className="text-sky-500" />
               <span>{project.role}</span>
             </div>
@@ -50,14 +50,14 @@ export default function ProjectSection({ project }) {
           {/* 이미지 영역 */}
           <div className="lg:col-span-6">
             <Link to={`/project/${project.id}`} className="block group" title={`${project.title} 상세 보기`}>
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 dark:border-slate-800 bg-slate-950">
+              <div className="relative rounded-sm overflow-hidden  border border-slate-200/80 dark:border-slate-800 bg-slate-950">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-64 sm:h-80 object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-4">
+                <div className="absolute inset-0 bg-gradient-to-t   to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-4">
                   <p className="text-xs text-white/90 font-medium line-clamp-1">{project.subtitle}</p>
                   <span className="text-xs font-mono text-sky-400 bg-sky-950/80 px-2 py-0.5 rounded-md border border-sky-800/80 flex items-center gap-1 flex-shrink-0 ml-2">
                     상세보기 <ArrowRight size={11} />
@@ -73,7 +73,7 @@ export default function ProjectSection({ project }) {
                   href={project.links.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all border border-slate-200 dark:border-slate-700"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all border border-slate-200 dark:border-slate-700"
                 >
                   <ExternalLink size={14} />
                   <span>라이브 데모</span>
@@ -84,7 +84,7 @@ export default function ProjectSection({ project }) {
                   href={project.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all border border-slate-200 dark:border-slate-700"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold transition-all border border-slate-200 dark:border-slate-700"
                 >
                   <GithubIcon size={14} />
                   <span>GitHub</span>
@@ -92,7 +92,7 @@ export default function ProjectSection({ project }) {
               )}
               <Link
                 to={`/project/${project.id}`}
-                className="ml-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all shadow-sm shadow-sky-500/25 group"
+                className="ml-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-sm bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all   group"
               >
                 <span>프로젝트 상세</span>
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
@@ -104,10 +104,10 @@ export default function ProjectSection({ project }) {
           <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-5">
             <div className="space-y-5">
               {/* 서비스 개요 (한눈에 이해하기 쉬운 프로젝트 정체성) */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800">
+              <div className="p-4 sm:p-5 rounded-sm bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800">
                 <div className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
-                  Service Overview
+                  프로젝트 소개
                 </div>
                 <p className="text-sm sm:text-base text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
                   {project.description}
@@ -118,7 +118,7 @@ export default function ProjectSection({ project }) {
               <div>
                 <h4 className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                  Key Features & Highlights
+                  주요 구현
                 </h4>
                 <ul className="space-y-2.5">
                   {project.keyFeatures.map((feat, idx) => {
@@ -145,7 +145,7 @@ export default function ProjectSection({ project }) {
               </div>
             </div>
 
-            {/* 하단: Tech Stack & 심층 기술 분석 안내 */}
+            {/* 하단: 기술 스택 & 심층 기술 분석 안내 */}
             <div className="pt-4 border-t border-slate-200/70 dark:border-slate-800 space-y-3.5">
               <div>
                 <div className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
@@ -166,12 +166,11 @@ export default function ProjectSection({ project }) {
               {/* 상세 기술 분석 페이지 유도 배너 */}
               <Link
                 to={`/project/${project.id}`}
-                className="flex items-center justify-between p-3.5 rounded-xl bg-sky-50/80 dark:bg-sky-950/40 border border-sky-200/80 dark:border-sky-800/70 hover:bg-sky-100 dark:hover:bg-sky-900/50 transition-all group"
+                className="flex items-center justify-between p-3.5 rounded-sm bg-sky-50/80 dark:bg-sky-950/40 border border-sky-200/80 dark:border-sky-800/70 hover:bg-sky-100 dark:hover:bg-sky-900/50 transition-all group"
               >
                 <div className="flex items-center gap-2 text-xs text-sky-900 dark:text-sky-200">
-                  <span className="text-sm">💡</span>
                   <span className="font-medium">
-                    장애 격리, 부하 테스트 병목 진단 및 성능 최적화 과정은 <span className="font-bold underline underline-offset-2 text-sky-600 dark:text-sky-400">상세 분석</span>에서 확인하실 수 있습니다.
+                    기술적 문제와 해결 과정 <span className="font-semibold">ACT 01 · ACT 02 →</span>
                   </span>
                 </div>
                 <ArrowRight size={15} className="text-sky-600 dark:text-sky-400 transition-transform group-hover:translate-x-1 flex-shrink-0 ml-2" />
