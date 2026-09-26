@@ -28,8 +28,8 @@ export default function InfraStatusBadge() {
           <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span className="font-mono hidden sm:inline">Infra: Pages & HomeLab</span>
-        <span className="font-mono sm:hidden">Infra</span>
+        <span className="hidden sm:inline font-medium">배포 및 운영 환경</span>
+        <span className="sm:hidden font-medium">배포·운영</span>
         <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -40,10 +40,10 @@ export default function InfraStatusBadge() {
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-slate-900 dark:text-white uppercase">
               <CheckCircle size={14} className="text-emerald-500" />
-              <span>배포·운영 환경</span>
+              <span>배포 및 운영 환경</span>
             </div>
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold">
-              Operational
+              정상 운영 중
             </span>
           </div>
 

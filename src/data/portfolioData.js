@@ -3,7 +3,7 @@ export const portfolioData = {
     "name": "박성국",
     "role": "Backend Developer",
     "avatar": "./profile.jpg",
-    "statusBadge": "새로운 도전을 준비중",
+    "statusBadge": "PROFILE",
     "email": "cdjsdj1902@gmail.com",
     "phone": "010-6480-6782",
     "github": "https://github.com/PSG-00",

@@ -14,11 +14,7 @@ export default function ProfileCard({ profile }) {
   return (
     <div className="profile-panel w-full glass-card rounded-sm p-6   transition-all duration-300 flex flex-col justify-between h-full border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70">
       <div>
-        {/* 상단 상태 뱃지 */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 mb-5">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 "></span>
-          <span>{profile.statusBadge}</span>
-        </div>
+        <span className="eyebrow">PROFILE</span>
 
         {/* 프로필 이미지 & 기본 정보 */}
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
