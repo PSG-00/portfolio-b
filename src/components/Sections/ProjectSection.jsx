@@ -92,9 +92,10 @@ export default function ProjectSection({ project }) {
               )}
               <Link
                 to={`/project/${project.id}`}
-                className="ml-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-sm bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all   group"
+                className="ml-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-sm bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all group"
+                title={`${project.title} 기술 분석 및 상세 보기`}
               >
-                <span>프로젝트 상세</span>
+                <span>기술 분석 및 상세 보기</span>
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
@@ -145,36 +146,21 @@ export default function ProjectSection({ project }) {
               </div>
             </div>
 
-            {/* 하단: 기술 스택 & 심층 기술 분석 안내 */}
-            <div className="pt-4 border-t border-slate-200/70 dark:border-slate-800 space-y-3.5">
-              <div>
-                <div className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
-                  Tech Stack
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+            {/* 하단: 기술 스택 */}
+            <div className="pt-4 border-t border-slate-200/70 dark:border-slate-800">
+              <div className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
+                Tech Stack
               </div>
-
-              {/* 상세 기술 분석 페이지 유도 배너 */}
-              <Link
-                to={`/project/${project.id}`}
-                className="flex items-center justify-between p-3.5 rounded-sm bg-sky-50/80 dark:bg-sky-950/40 border border-sky-200/80 dark:border-sky-800/70 hover:bg-sky-100 dark:hover:bg-sky-900/50 transition-all group"
-              >
-                <div className="flex items-center gap-2 text-xs text-sky-900 dark:text-sky-200">
-                  <span className="font-medium">
-                    기술적 문제와 해결 과정 <span className="font-semibold">ACT 01 · ACT 02 →</span>
+              <div className="flex flex-wrap gap-1.5">
+                {project.techStack.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
+                  >
+                    {tech}
                   </span>
-                </div>
-                <ArrowRight size={15} className="text-sky-600 dark:text-sky-400 transition-transform group-hover:translate-x-1 flex-shrink-0 ml-2" />
-              </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
