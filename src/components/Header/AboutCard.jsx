@@ -4,7 +4,11 @@ export default function AboutCard({ about }) {
   return <div className="about-panel">
     <span className="eyebrow">ABOUT</span>
     <h2>{about.headline}</h2>
-    <p className="about-description">{about.description}</p>
+    <div className="about-description">
+      {(about.description || '').split('\n').filter(Boolean).map((line, idx) => (
+        <p key={idx} className="about-desc-line">{line}</p>
+      ))}
+    </div>
     <div className="about-highlights">{about.highlights.map((item, index) =>
       <div key={item.label}><span className="item-index">0{index + 1}</span><h3>{item.label}</h3><p>{item.desc}</p></div>
     )}</div>
