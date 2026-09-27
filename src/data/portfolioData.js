@@ -72,7 +72,7 @@ export const portfolioData = {
       "id": "education",
       "label": "교육 및 활동",
       "category": "Activities",
-      "desc": "실무 부트캠프"
+      "desc": "부트캠프 및 해커톤"
     },
     {
       "id": "certifications",
@@ -716,6 +716,12 @@ export const portfolioData = {
       "title": "AWS 활용 Spring 백엔드 개발자 실무 부트캠프",
       "organization": "코드잇 / K-Digital Training",
       "details": "1,250시간 이수. Java·Spring API 설계, JPA N+1·QueryDSL 튜닝, TDD·BDD, AWS·GitHub Actions 무중단 배포, Redis 캐싱·Kafka 이벤트 아키텍처 학습."
+    },
+    {
+      "period": "2024.01 - 2024.12",
+      "title": "멋쟁이사자처럼 대학 12기 (백엔드 파트)",
+      "organization": "멋쟁이사자처럼 / 조선대학교",
+      "details": "Spring 기반 웹 서비스 프로젝트 개발 및 백엔드 코어 스터디 진행. 교내/연합 아이디어톤(24.05) 및 양재 aT센터 12기 중앙 무박 해커톤(24.08) 참가."
     }
   ]
 };
