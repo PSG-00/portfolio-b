@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Globe, Mail, Phone, FileText, Check, GraduationCap } from 'lucide-react';
+import { Globe, Mail, Phone, FileText, FolderDown, Check, GraduationCap } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../Common/Icons';
 
 export default function ProfileCard({ profile }) {
@@ -114,11 +114,22 @@ export default function ProfileCard({ profile }) {
           <a
             href="./resume.pdf"
             download={`이력서_${profile.name}.pdf`}
-            className="col-span-4 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-sm bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all   mt-1"
+            className="col-span-4 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-sm bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all mt-1"
             title="이력서 PDF 다운로드"
           >
             <FileText size={15} />
             <span>이력서 다운로드 (PDF)</span>
+          </a>
+
+          {/* 3행: 포트폴리오 다운로드 버튼 (전체 4칸 차지) */}
+          <a
+            href="./portfolio.pdf"
+            download={`포트폴리오_${profile.name}.pdf`}
+            className="col-span-4 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-sm bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200/80 dark:border-slate-700/80 text-xs font-bold transition-all"
+            title="포트폴리오 PDF 다운로드"
+          >
+            <FolderDown size={15} />
+            <span>포트폴리오 다운로드 (PDF)</span>
           </a>
         </div>
       </div>
