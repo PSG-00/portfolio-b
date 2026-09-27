@@ -715,13 +715,25 @@ export const portfolioData = {
       "period": "2025.12.30 - 2026.07.29",
       "title": "AWS 활용 Spring 백엔드 개발자 실무 부트캠프",
       "organization": "코드잇 / K-Digital Training",
-      "details": "1,250시간 이수. Java·Spring API 설계, JPA N+1·QueryDSL 튜닝, TDD·BDD, AWS·GitHub Actions 무중단 배포, Redis 캐싱·Kafka 이벤트 아키텍처 학습."
+      "description": "총 1,250시간 집중 실무 과정 이수 및 팀 프로젝트 기반 백엔드 아키텍처 학습",
+      "activities": [
+        "Java와 Spring의 핵심 개념 정립 및 RESTful API 설계 역량 확보",
+        "JPA N+1 문제 해결 등 Query 최적화 및 안정적인 DB 모델링 설계 능력 체득",
+        "TDD/BDD 기반 테스트 주도 개발 및 @Async 기반 비동기 처리 프로세스 경험",
+        "AWS 인프라 환경 내 GitHub Actions 기반의 CI/CD 파이프라인 전반 구축 경험",
+        "Redis 캐싱 전략 및 Kafka 기반 이벤트를 통한 분산 아키텍처 환경의 데이터 정합성 연구"
+      ]
     },
     {
       "period": "2024.01 - 2024.12",
       "title": "멋쟁이사자처럼 대학 12기 (백엔드 파트)",
       "organization": "멋쟁이사자처럼 / 조선대학교",
-      "details": "Spring 기반 웹 서비스 프로젝트 개발 및 백엔드 코어 스터디 진행. 교내/연합 아이디어톤(24.05) 및 양재 aT센터 12기 중앙 무박 해커톤(24.08) 참가."
+      "description": "1년 정규 과정 수료. Spring 기반 웹 서비스 프로젝트 개발 및 백엔드 코어 스터디",
+      "activities": [
+        "Spring 기반 웹 서비스 프로젝트 개발 및 백엔드 코어 스터디 진행",
+        "멋쟁이사자처럼 대학 12기 중앙 무박 해커톤 참가 (2024.08 / 서울 양재 aT센터)",
+        "멋쟁이사자처럼 교내 및 연합 아이디어톤 참가 (2024.05)"
+      ]
     }
   ]
 };
