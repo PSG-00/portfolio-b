@@ -735,5 +735,13 @@ export const portfolioData = {
         "멋쟁이사자처럼 교내 및 연합 아이디어톤 참가 (2024.05)"
       ]
     }
-  ]
+  ],
+  "monitoring": {
+    "uptimeRobotApiKey": "",
+    "intervalMinutes": 5,
+    "services": [
+      { "id": "mopl", "name": "모두의 플리 (MOPL)", "url": "https://mopl.psg-dev.site" },
+      { "id": "monew", "name": "모뉴 (MONEW)", "url": "https://monew.psg-dev.site" }
+    ]
+  }
 };
