@@ -70,15 +70,30 @@ export async function fetchUptimeRobotStatus(apiKey) {
       const isOffline = m.status === 9 || m.status === 8;
       const latestResponse = m.response_times?.[0]?.value || null;
 
+      let displayName = m.friendly_name || m.url;
+      const lower = displayName.toLowerCase();
+      if (lower.includes('mopl')) {
+        displayName = '모두의 플리 (MOPL)';
+      } else if (lower.includes('monew')) {
+        displayName = '모뉴 (MONEW)';
+      }
+
       return {
         id: m.id,
-        name: m.friendly_name || m.url,
+        name: displayName,
         url: m.url,
         status: isOnline ? 'online' : isOffline ? 'offline' : 'paused',
         rawStatus: m.status,
         responseTime: latestResponse,
         checkedAt: currentTime,
       };
+    });
+
+    // MOPL 우선 정렬
+    fetchedMonitors.sort((a, b) => {
+      if (a.name.includes('MOPL')) return -1;
+      if (b.name.includes('MOPL')) return 1;
+      return 0;
     });
 
     return {

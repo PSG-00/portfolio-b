@@ -737,7 +737,7 @@ export const portfolioData = {
     }
   ],
   "monitoring": {
-    "uptimeRobotApiKey": "",
+    "uptimeRobotApiKey": "ur3810265-e676d84e3f65a9ea1a6de6d8",
     "intervalMinutes": 5,
     "services": [
       { "id": "mopl", "name": "모두의 플리 (MOPL)", "url": "https://mopl.psg-dev.site" },
