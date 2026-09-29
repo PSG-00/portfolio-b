@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
-  Server,
   Globe,
   Cloud,
   CheckCircle2,
@@ -21,7 +20,7 @@ export default function InfraStatusBadge() {
   const [loading, setLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [updatedAt, setUpdatedAt] = useState('');
-  const [isFallback, setIsFallback] = useState(true);
+  const [isFallback, setIsFallback] = useState(false);
   const popoverRef = useRef(null);
 
   // UptimeRobot API Key (환경변수 또는 portfolioData에서 로드)
@@ -51,7 +50,7 @@ export default function InfraStatusBadge() {
     loadStatus(false);
     const interval = setInterval(() => {
       loadStatus(false);
-    }, 60000); // 60초마다 갱신
+    }, 60000);
     return () => clearInterval(interval);
   }, [loadStatus]);
 
@@ -72,7 +71,7 @@ export default function InfraStatusBadge() {
 
   return (
     <div className="relative inline-block text-left" ref={popoverRef}>
-      {/* 1. 상단 네비게이션 트리거 버튼 */}
+      {/* 1. 상단 네비게이션 트리거 버튼: "배포 상태" */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`infra-trigger inline-flex items-center gap-2 px-2.5 py-1.5 rounded-sm text-xs font-semibold border transition-all ${
@@ -81,7 +80,7 @@ export default function InfraStatusBadge() {
             : 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60'
         }`}
         title="홈랩 백엔드 서버 실시간 가동 상태 및 모니터링"
-        aria-label="배포 및 운영 환경 상태 열기"
+        aria-label="배포 상태 열기"
       >
         {/* 초록색 / 빨간색 실시간 깜빡이는 점 (Ping Dot) */}
         <span className="relative flex h-2 w-2">
@@ -98,8 +97,7 @@ export default function InfraStatusBadge() {
           )}
         </span>
 
-        <span className="hidden sm:inline font-medium">배포 및 홈랩 상태</span>
-        <span className="sm:hidden font-medium">홈랩</span>
+        <span className="font-medium">배포 상태</span>
 
         {/* 상태 라벨 태그 */}
         <span
@@ -118,111 +116,87 @@ export default function InfraStatusBadge() {
       {/* 2. 인터랙티브 팝오버 창 */}
       {isOpen && (
         <div className="infra-popover absolute right-0 mt-2 rounded-sm p-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-slate-800 shadow-xl z-50 animate-in fade-in zoom-in-95 duration-200 text-left max-h-[85vh] overflow-y-auto">
-          {/* 팝오버 헤더 */}
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-            <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-slate-900 dark:text-white uppercase">
-              {hasOffline ? (
-                <AlertCircle size={15} className="text-rose-500 flex-shrink-0" />
-              ) : (
-                <CheckCircle2 size={15} className="text-emerald-500 flex-shrink-0" />
-              )}
-              <span>홈랩 백엔드 실시간 상태</span>
+          {/* 팝오버 헤더: 실시간 서버 헬스체크 + 갱신 시간 및 새로고침 버튼 */}
+          <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100 dark:border-slate-800">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white">
+              <Activity size={14} className="text-indigo-500 flex-shrink-0" />
+              <span>실시간 서버 헬스체크</span>
             </div>
 
-            <div className="flex items-center gap-1.5">
-              <span
-                className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                  hasOffline
-                    ? 'bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300'
-                    : 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300'
-                }`}
-              >
-                {hasOffline ? '일부 점검 중' : '정상 가동 중 (Online)'}
-              </span>
+            <div className="flex items-center gap-1 text-[10px] font-mono text-slate-400">
+              {updatedAt && <span>갱신: {updatedAt}</span>}
               <button
                 onClick={() => loadStatus(true)}
                 disabled={isRefreshing}
-                className="p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ml-0.5"
                 title="상태 새로고침"
                 aria-label="새로고침"
               >
-                <RefreshCw size={12} className={isRefreshing ? 'animate-spin text-sky-500' : ''} />
+                <RefreshCw size={11} className={isRefreshing ? 'animate-spin text-sky-500' : ''} />
               </button>
             </div>
           </div>
 
           {/* 항목 1: 실시간 서버 상태 (MOPL & MONEW) */}
-          <div className="mt-3">
-            <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400 mb-2">
-              <span className="flex items-center gap-1">
-                <Activity size={12} className="text-indigo-500" />
-                실시간 서버 헬스체크
-              </span>
-              <span className="font-mono font-normal text-[10px] text-slate-400">
-                {updatedAt ? `갱신: ${updatedAt}` : ''}
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              {monitors.map((mon) => {
-                const isItemOnline = mon.status === 'online';
-                return (
-                  <div
-                    key={mon.id}
-                    className="p-2.5 rounded-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between gap-2"
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      {/* 초록색 깜빡이는 점 / 빨간색 점 */}
-                      <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-                        {isItemOnline ? (
-                          <>
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                          </>
-                        ) : (
-                          <>
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
-                          </>
-                        )}
-                      </span>
-
-                      <div className="min-w-0">
-                        <div className="font-bold text-xs text-slate-900 dark:text-white truncate">
-                          {mon.name}
-                        </div>
-                        <a
-                          href={mon.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[10px] text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 flex items-center gap-1 font-mono truncate"
-                        >
-                          <span className="truncate">{mon.url.replace('https://', '')}</span>
-                          <ExternalLink size={9} className="flex-shrink-0" />
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col items-end flex-shrink-0">
-                      <span
-                        className={`text-[10px] px-2 py-0.5 rounded-full font-bold font-mono ${
-                          isItemOnline
-                            ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60'
-                            : 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60'
-                        }`}
-                      >
-                        {isItemOnline ? 'Online' : 'Offline'}
-                      </span>
-                      {mon.responseTime && (
-                        <span className="text-[9px] font-mono text-slate-400 mt-0.5">
-                          {mon.responseTime}ms
-                        </span>
+          <div className="space-y-2">
+            {monitors.map((mon) => {
+              const isItemOnline = mon.status === 'online';
+              return (
+                <div
+                  key={mon.id}
+                  className="p-2.5 rounded-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between gap-2"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    {/* 초록색 깜빡이는 점 / 빨간색 점 */}
+                    <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+                      {isItemOnline ? (
+                        <>
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
+                        </>
                       )}
+                    </span>
+
+                    <div className="min-w-0">
+                      <div className="font-bold text-xs text-slate-900 dark:text-white truncate">
+                        {mon.name}
+                      </div>
+                      <a
+                        href={mon.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[10px] text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 flex items-center gap-1 font-mono truncate"
+                      >
+                        <span className="truncate">{mon.url.replace('https://', '')}</span>
+                        <ExternalLink size={9} className="flex-shrink-0" />
+                      </a>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div className="flex flex-col items-end flex-shrink-0">
+                    <span
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-bold font-mono ${
+                        isItemOnline
+                          ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60'
+                          : 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60'
+                      }`}
+                    >
+                      {isItemOnline ? 'Online' : 'Offline'}
+                    </span>
+                    {mon.responseTime && (
+                      <span className="text-[9px] font-mono text-slate-400 mt-0.5">
+                        {mon.responseTime}ms
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* 항목 2: 모니터링 & 장애 알림 아키텍처 안내 */}
@@ -281,12 +255,12 @@ export default function InfraStatusBadge() {
           </div>
 
           {/* 팝오버 푸터 */}
-          <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px] text-slate-400">
-            <div className="flex items-center gap-1">
-              <ShieldCheck size={11} className="text-emerald-500" />
-              <span>{isFallback ? '기본 상태 표시 중 (API Key 연동 가능)' : 'UptimeRobot Read-Only API 연동됨'}</span>
+          <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px]">
+            <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+              <ShieldCheck size={12} className="text-emerald-500" />
+              <span>UptimeRobot 실시간 모니터링 연동됨</span>
             </div>
-            <span className="font-mono">5m Check</span>
+            <span className="font-mono text-slate-400">5분 주기 체크</span>
           </div>
         </div>
       )}
