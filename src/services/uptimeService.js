@@ -1,38 +1,41 @@
 // UptimeRobot API 연동 서비스
 // Read-Only API Key를 사용하여 모니터의 실시간 상태(Online/Offline)를 조회합니다.
 
-const DEFAULT_MONITORS = [
+const FALLBACK_MONITORS = [
   {
     id: 'mopl',
     name: '모두의 플리 (MOPL)',
     url: 'https://mopl.psg-dev.site',
-    status: 'online', // 'online' | 'offline' | 'loading'
-    responseTime: 38,
-    checkedAt: '방금 전',
+    status: 'error',
+    responseTime: null,
+    checkedAt: '-',
   },
   {
     id: 'monew',
     name: '모뉴 (MONEW)',
     url: 'https://monew.psg-dev.site',
-    status: 'online',
-    responseTime: 45,
-    checkedAt: '방금 전',
+    status: 'error',
+    responseTime: null,
+    checkedAt: '-',
   },
 ];
 
 /**
  * UptimeRobot getMonitors API 호출 함수
  * @param {string} apiKey - UptimeRobot Read-Only API Key (ur... 형태)
- * @returns {Promise<{ success: boolean, isFallback: boolean, monitors: Array, updatedAt: string, error?: string }>}
+ * @returns {Promise<{ success: boolean, isError: boolean, monitors: Array, updatedAt: string, error?: string }>}
  */
 export async function fetchUptimeRobotStatus(apiKey) {
-  // API Key가 없거나 기본 플레이스홀더인 경우 기본값(Online) 제공
+  const currentTime = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+
+  // API Key가 없거나 유효하지 않은 경우 명확하게 에러 상태 반환
   if (!apiKey || apiKey.trim() === '' || apiKey.includes('YOUR_') || apiKey.length < 10) {
     return {
-      success: true,
-      isFallback: true,
-      monitors: DEFAULT_MONITORS,
-      updatedAt: new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }),
+      success: false,
+      isError: true,
+      error: 'API Key 미설정',
+      monitors: FALLBACK_MONITORS.map((m) => ({ ...m, checkedAt: currentTime })),
+      updatedAt: currentTime,
     };
   }
 
@@ -51,15 +54,13 @@ export async function fetchUptimeRobotStatus(apiKey) {
     });
 
     if (!response.ok) {
-      throw new Error(`UptimeRobot HTTP Error: ${response.status}`);
+      throw new Error(`HTTP ${response.status}`);
     }
 
     const data = await response.json();
     if (data.stat !== 'ok') {
-      throw new Error(data.error?.message || 'UptimeRobot API 응답 실패');
+      throw new Error(data.error?.message || 'API 응답 실패');
     }
-
-    const currentTime = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
 
     // 응답 모니터 목록 가공
     const fetchedMonitors = (data.monitors || []).map((m) => {
@@ -97,18 +98,23 @@ export async function fetchUptimeRobotStatus(apiKey) {
 
     return {
       success: true,
-      isFallback: false,
-      monitors: fetchedMonitors.length > 0 ? fetchedMonitors : DEFAULT_MONITORS,
+      isError: false,
+      monitors: fetchedMonitors.length > 0 ? fetchedMonitors : FALLBACK_MONITORS,
       updatedAt: currentTime,
     };
   } catch (err) {
-    console.warn('[UptimeRobot] 실시간 조회 실패, 기본 상태로 표시합니다:', err.message);
+    console.error('[UptimeRobot] 실시간 조회 실패:', err.message);
+    const errorMonitors = FALLBACK_MONITORS.map((m) => ({
+      ...m,
+      checkedAt: currentTime,
+    }));
+
     return {
       success: false,
-      isFallback: true,
+      isError: true,
       error: err.message,
-      monitors: DEFAULT_MONITORS,
-      updatedAt: new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }),
+      monitors: errorMonitors,
+      updatedAt: currentTime,
     };
   }
 }

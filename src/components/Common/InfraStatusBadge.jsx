@@ -20,7 +20,7 @@ export default function InfraStatusBadge() {
   const [loading, setLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [updatedAt, setUpdatedAt] = useState('');
-  const [isFallback, setIsFallback] = useState(false);
+  const [isError, setIsError] = useState(false);
   const popoverRef = useRef(null);
 
   // UptimeRobot API Key (환경변수 또는 portfolioData에서 로드)
@@ -36,7 +36,7 @@ export default function InfraStatusBadge() {
       const result = await fetchUptimeRobotStatus(apiKey);
       setMonitors(result.monitors);
       setUpdatedAt(result.updatedAt);
-      setIsFallback(result.isFallback);
+      setIsError(result.isError);
     } finally {
       setLoading(false);
       if (isManual) {
@@ -65,29 +65,52 @@ export default function InfraStatusBadge() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // 전체 상태 판별: 하나라도 offline이면 offline
-  const isAllOnline = monitors.length > 0 && monitors.every((m) => m.status === 'online');
+  // 전체 상태 판별
   const hasOffline = monitors.some((m) => m.status === 'offline');
+  const hasError = !loading && (isError || monitors.length === 0 || monitors.some((m) => m.status === 'error'));
+  const isAllOnline = monitors.length > 0 && monitors.every((m) => m.status === 'online');
+
+  // 버튼 스타일 및 태그 텍스트 결정
+  let buttonStyle = 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60';
+  let tagStyle = 'bg-emerald-200 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200';
+  let tagText = 'Online';
+
+  if (loading) {
+    buttonStyle = 'bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-100';
+    tagStyle = 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300';
+    tagText = 'Check';
+  } else if (hasOffline) {
+    buttonStyle = 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800/60 hover:bg-rose-100 dark:hover:bg-rose-900/60';
+    tagStyle = 'bg-rose-200 dark:bg-rose-900 text-rose-800 dark:text-rose-200';
+    tagText = 'Offline';
+  } else if (hasError) {
+    buttonStyle = 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/60 hover:bg-amber-100 dark:hover:bg-amber-900/60';
+    tagStyle = 'bg-amber-200 dark:bg-amber-900 text-amber-800 dark:text-amber-200';
+    tagText = 'Error';
+  }
 
   return (
     <div className="relative inline-block text-left" ref={popoverRef}>
       {/* 1. 상단 네비게이션 트리거 버튼: "배포 상태" */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`infra-trigger inline-flex items-center gap-2 px-2.5 py-1.5 rounded-sm text-xs font-semibold border transition-all ${
-          hasOffline
-            ? 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800/60 hover:bg-rose-100 dark:hover:bg-rose-900/60'
-            : 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60'
-        }`}
+        className={`infra-trigger inline-flex items-center gap-2 px-2.5 py-1.5 rounded-sm text-xs font-semibold border transition-all ${buttonStyle}`}
         title="홈랩 백엔드 서버 실시간 가동 상태 및 모니터링"
         aria-label="배포 상태 열기"
       >
-        {/* 초록색 / 빨간색 실시간 깜빡이는 점 (Ping Dot) */}
+        {/* 상태 점 (초록 Ping / 빨강 Ping / 주황 Pulse) */}
         <span className="relative flex h-2 w-2">
-          {hasOffline ? (
+          {loading ? (
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-slate-400"></span>
+          ) : hasOffline ? (
             <>
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+            </>
+          ) : hasError ? (
+            <>
+              <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
             </>
           ) : (
             <>
@@ -100,14 +123,8 @@ export default function InfraStatusBadge() {
         <span className="font-medium">배포 상태</span>
 
         {/* 상태 라벨 태그 */}
-        <span
-          className={`text-[10px] px-1.5 py-0.2 rounded font-mono font-bold ${
-            hasOffline
-              ? 'bg-rose-200 dark:bg-rose-900 text-rose-800 dark:text-rose-200'
-              : 'bg-emerald-200 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200'
-          }`}
-        >
-          {loading ? 'Check' : hasOffline ? 'Offline' : 'Online'}
+        <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono font-bold ${tagStyle}`}>
+          {tagText}
         </span>
 
         <ChevronDown size={12} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
@@ -141,24 +158,29 @@ export default function InfraStatusBadge() {
           <div className="space-y-2">
             {monitors.map((mon) => {
               const isItemOnline = mon.status === 'online';
+              const isItemOffline = mon.status === 'offline';
+              const isItemError = mon.status === 'error';
+
               return (
                 <div
                   key={mon.id}
                   className="p-2.5 rounded-sm bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between gap-2"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
-                    {/* 초록색 깜빡이는 점 / 빨간색 점 */}
+                    {/* 상태 점 */}
                     <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
                       {isItemOnline ? (
                         <>
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                         </>
-                      ) : (
+                      ) : isItemOffline ? (
                         <>
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
                         </>
+                      ) : (
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 animate-pulse"></span>
                       )}
                     </span>
 
@@ -183,16 +205,20 @@ export default function InfraStatusBadge() {
                       className={`text-[10px] px-2 py-0.5 rounded-full font-bold font-mono ${
                         isItemOnline
                           ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60'
-                          : 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60'
+                          : isItemOffline
+                          ? 'bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60'
+                          : 'bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60'
                       }`}
                     >
-                      {isItemOnline ? 'Online' : 'Offline'}
+                      {isItemOnline ? 'Online' : isItemOffline ? 'Offline' : '조회 실패'}
                     </span>
-                    {mon.responseTime && (
-                      <span className="text-[9px] font-mono text-slate-400 mt-0.5">
-                        {mon.responseTime}ms
-                      </span>
-                    )}
+                    <span className="text-[9px] font-mono text-slate-400 mt-0.5">
+                      {isItemOnline && mon.responseTime
+                        ? `${mon.responseTime}ms`
+                        : isItemOffline
+                        ? 'Down'
+                        : '확인 불가'}
+                    </span>
                   </div>
                 </div>
               );
@@ -256,10 +282,17 @@ export default function InfraStatusBadge() {
 
           {/* 팝오버 푸터 */}
           <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px]">
-            <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
-              <ShieldCheck size={12} className="text-emerald-500" />
-              <span>UptimeRobot 실시간 모니터링 연동됨</span>
-            </div>
+            {hasError ? (
+              <div className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-medium">
+                <AlertCircle size={12} className="text-amber-500" />
+                <span>실시간 모니터링 조회 실패 (재시도 필요)</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+                <ShieldCheck size={12} className="text-emerald-500" />
+                <span>UptimeRobot 실시간 모니터링 연동됨</span>
+              </div>
+            )}
             <span className="font-mono text-slate-400">5분 주기 체크</span>
           </div>
         </div>
